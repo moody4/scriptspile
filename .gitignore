@@ -1,0 +1,9 @@
+docs/.vuepress/.temp/
+docs/.vuepress/.cache/
+docs/.vuepress/dist/
+docs/public/*.jsx
+docs/public/*.js
+
+.gitlab-ci.yml
+/public/
+node_modules

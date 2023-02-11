@@ -1,0 +1,20 @@
+{
+  "name": "scriptspile",
+  "version": "1.0.0",
+  "description": "Adobe software scripts archive",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@volar-plugins/vetur": "latest",
+    "@vuepress/plugin-search": "^2.0.0-beta.60",
+    "vuepress": "^2.0.0-beta.60",
+    "vuepress-plugin-components": "^2.0.0-beta.173",
+    "vuepress-plugin-md-enhance": "^2.0.0-beta.173",
+    "vuepress-plugin-use-pages": "^1.0.5"
+  }
+}
