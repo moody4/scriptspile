@@ -11,7 +11,7 @@ import { getDirname, path } from '@vuepress/utils'
 const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
-   // base: '/scriptspile/',
+   base: '/scriptspile/',
    lang: 'en-US',
    title: '📜 ScriptsPile',
    description: 'Adobe software scripts archive',
