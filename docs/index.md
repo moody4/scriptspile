@@ -28,13 +28,13 @@ footer: MIT Licensed | Copyright © 2023 CodeGraphics
 
 ### Run ScriptsPile Locally
 ```sh
-// Clone repository
-git clone https://github.com/moody4/sсriptspile.git
+# Clone repository
+git clone https://github.com/moody4/scriptspile.git
 
-// Install dependencies
+# Install dependencies
 npm install
 
-// Run local server: localhost:8080
+# Run local server: localhost:8080
 npm run dev
 ```
 ### Random Featuring

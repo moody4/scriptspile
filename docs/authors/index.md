@@ -1,7 +1,8 @@
 ---
 lang: en-US
 title: Authors
-sidebar: [{ text: 'Authors', children: [{text: 'Sergey Osokin', link: '#sergey-osokin'} , {text: daani-rika, link: '#daani-rika'}, {text: 'Alexander Ladygin', link: '#alexander-ladygin'}] }]
+# sidebar: [{ text: 'Authors', children: [{text: 'Sergey Osokin', link: '#sergey-osokin'} , {text: daani-rika, link: '#daani-rika'}, {text: 'Alexander Ladygin', link: '#alexander-ladygin'}] }]
+sidebar: false
 editLink: false
 ---
 
