@@ -3,9 +3,9 @@ import { fileURLToPath } from 'node:url'
 
 const meta = await _fs.readJSON(fileURLToPath(new URL(`../modules/authorsMeta.json`, import.meta.url)))
 
-export const testPlugin = (/* options */) => (app) => {
+export const scriptspilePlugin = (/* options */) => (app) => {
    
-   const name = 'testPlugin'
+   const name = 'scriptspilePlugin'
    
    const _authorsPages = {}
    const _softwarePages = {}

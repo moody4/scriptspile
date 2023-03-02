@@ -2,7 +2,7 @@ import { defineUserConfig } from 'vuepress';
 import { defaultTheme } from '@vuepress/theme-default'
 import { usePagesPlugin } from 'vuepress-plugin-use-pages'
 import { searchPlugin } from '@vuepress/plugin-search'
-import { testPlugin }from './modules/testPlugin.js'
+import { scriptspilePlugin }from './modules/scriptspilePlugin.js'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 // import { componentsPlugin } from "vuepress-plugin-components";
 
@@ -57,7 +57,7 @@ export default defineUserConfig({
       searchPlugin({
          hotKeys: ['s', '/']
       }),
-      testPlugin(),
+      scriptspilePlugin(),
 
       mdEnhancePlugin({
          imgLazyload: true,
