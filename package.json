@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "Adobe software scripts archive",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "author:add": "node ./helpers/scripts/addAuthor.js",
+    "author:remove": "node ./helpers/scripts/removeAuthor.js",
+    "check": "node ./helpers/scripts/checkIntegrity.js",
+    "update": "node ./helpers/scripts/checkUpdates.js"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "scriptspile-helpers": "./helpers/"
+  },
   "devDependencies": {
     "@volar-plugins/vetur": "latest",
     "@vuepress/plugin-search": "^2.0.0-beta.60",

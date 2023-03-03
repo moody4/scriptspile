@@ -13,11 +13,15 @@ const props = defineProps({
 })
 
 const pages = usePages()
-const filteredPages = pages.filter(page => page.frontmatter.hasOwnProperty(props.filterKey) && page.frontmatter[props.filterKey] === props.filterValue ).sort((a, b) => a.title === b.title ? 0 : (a.title < b.title ? -1 : 1))
+const filteredPages = pages.filter(page => {
+   return page.frontmatter.hasOwnProperty(props.filterKey) && 
+          page.frontmatter[props.filterKey] === props.filterValue
+}).sort((a, b) => a.title === b.title ? 0 : (a.title < b.title ? -1 : 1))
 // TODO: Implement filtering by tags. Is multi-tag filtering needed?
 
 </script>
 
 <template>
-   <Content v-for="page in filteredPages" :page-key="page.key"/>
+   <p v-if="!filteredPages.length">There are no scripts yet</p>
+   <Content v-else v-for="page in filteredPages" :page-key="page.key"/>
 </template>

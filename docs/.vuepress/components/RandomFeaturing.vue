@@ -1,42 +1,30 @@
 <script setup>
-import { computed } from 'vue'
 import { withBase } from '@vuepress/client';
 import { usePages } from '@temp/pages'
-import authorsMeta from '../modules/authorsMeta.json'
+import { escapeStr } from 'scriptspile-helpers/libs/utils-common'
+import meta from '../meta/authors.json'
 
-const pages = usePages() 
+const pages = usePages()
 const r = Math.floor(Math.random() * pages.length)
 const randomPage = pages[r]
-const author = randomPage.frontmatter.author
-const hasGithub = authorsMeta[author]?.github_user ? true : false
-const nickname = hasGithub ? authorsMeta[author].github_user : author
-const ghURL = hasGithub ? `https://github.com/${nickname}` : 'javascript:void(0)'
-const avatar = computed(() => withBase(`/assets/avatar/${nickname}.jpg`))
-let showAvatar = true
-
-// let avatar = undefined
-// if (hasGithub){
-//    let response = await fetch(`https://api.github.com/users/${nickname}`);
-
-//    if (response.ok){
-//       let user = await response.json();
-//       avatar = user.avatar_url
-//    } else {
-//       showAvatar = false
-//       console.log(new Error(`Failed to fetch github user data, status: ${response.status}\nURL: ${response.url}`));
-//    }
-// }   
+const authorName = randomPage?.frontmatter.author || ""
+const slug = escapeStr(authorName)
+const author = meta[slug]
+const hasGithub = author?.ghUser ? true : false
+const nickname = hasGithub ? author.ghUser : authorName
+const ghURL = hasGithub ? `https://github.com/${author.ghUser}` : 'javascript:void(0)'
+const avatar = hasGithub? withBase(`/assets/avatar/${slug}.jpg`) : ''
 
 </script>
 
 <template>
-   <div id="container">
+   <div id="container" v-if="pages.length > 0">
       <Content id="script_card" :page-key="randomPage.key" />
       <div id="author_card">
-         <img id="avatar" :src="avatar" v-if="showAvatar">
+         <img id="avatar" :src="avatar" v-if="hasGithub">
          <div id="meta">
             <div id="name">
-               <span style="color: #adbac7;">{{ author }}</span>
+               <span style="color: #adbac7;">{{ authorName }}</span>
                <span style="color: #757f95;">{{ `@${nickname}` }}</span>
             </div>
             <div id="links">

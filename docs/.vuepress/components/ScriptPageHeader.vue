@@ -1,6 +1,4 @@
 <script setup>
-import { computed } from 'vue'
-import { withBase } from '@vuepress/client';
 import { usePages } from '@temp/pages'
 
 const props = defineProps({
@@ -8,7 +6,10 @@ const props = defineProps({
 })
 
 const pages = usePages()
-const targetPage = computed(() => { return pages.find(page => page.key === props.pageKey) })
+const targetPage = pages.find(page => page.key === props.pageKey)
+const filename = targetPage.frontmatter.filename
+const software = targetPage.frontmatter.software
+const author = targetPage.frontmatter.author
 
 </script>
 
@@ -16,11 +17,11 @@ const targetPage = computed(() => { return pages.find(page => page.key === props
 <div id="header">
    <div class="row">
       <TagLinks :page="targetPage"/>
-      <span>Download: <a :href="$withBase(`/${targetPage.title}.jsx`)" download>{{targetPage.title}}.jsx</a></span>
+      <span>Download: <a :href="$withBase(`/${filename}`)" download>{{`${filename}`}}</a></span>
    </div>
    <div class="row">
-      <span>Script for: <router-link :to="encodeURI(`/${targetPage.frontmatter.software}`)">{{targetPage.frontmatter.software}}</router-link></span>
-      <span>Author: <router-link :to="encodeURI(`/Authors/${targetPage.frontmatter.author.replace(/\s/g, '-')}`)">{{targetPage.frontmatter.author}}</router-link></span>
+      <span>Script for: <router-link :to="encodeURI(`/${software}`)">{{software}}</router-link></span>
+      <span>Author: <router-link :to="encodeURI(`/Authors/${author.replace(/\s/g, '-')}`)">{{author}}</router-link></span>
    </div>
 </div>
 </template>

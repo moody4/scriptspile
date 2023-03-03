@@ -1,7 +1,6 @@
 ---
 lang: en-US
 title: Authors
-# sidebar: [{ text: 'Authors', children: [{text: 'Sergey Osokin', link: '#sergey-osokin'} , {text: daani-rika, link: '#daani-rika'}, {text: 'Alexander Ladygin', link: '#alexander-ladygin'}] }]
 sidebar: false
 editLink: false
 ---
@@ -14,8 +13,10 @@ People who write scripts for Adobe software are typically highly skilled in prog
 
 Click on the name to learn more.
 
-# [Sergey Osokin](Sergey-Osokin/) 
+# [Sergey Osokin](sergey-osokin/)
 
-# [daani-rika](daani-rika/) 
+# [daani-rika](daani-rika/)
 
-# [Alexander Ladygin](Alexander-Ladygin/) 
+# [Alexander Ladygin](alexander-ladygin/)
+
+# [Hiroyuki Sato](hiroyuki-sato/)

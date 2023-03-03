@@ -4,6 +4,7 @@ docs/.vuepress/dist/
 docs/public/*.jsx
 docs/public/*.js
 
+helpers/.temp
 .gitlab-ci.yml
 /public/
 node_modules

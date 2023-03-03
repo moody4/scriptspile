@@ -1,7 +1,8 @@
 import { fs as _fs, path as _path } from '@vuepress/utils'
-import { fileURLToPath } from 'node:url'
+import { escapeStr, getFiles, trimExt, readJSON, resolvePath } from 'scriptspile-helpers'
+import { META_DIR, META_FILENAME, PUBLIC_DIR, SCRIPTS_DIR } from 'scriptspile-helpers/libs/globals.js'
 
-const meta = await _fs.readJSON(fileURLToPath(new URL(`../modules/authorsMeta.json`, import.meta.url)))
+const meta = await readJSON(`${META_DIR}/${META_FILENAME}`)
 
 export const scriptspilePlugin = (/* options */) => (app) => {
    
@@ -44,34 +45,14 @@ export const scriptspilePlugin = (/* options */) => (app) => {
 
    const scriptsPagesWaiter = objRedinessWaiter(_scriptsPages)
    const softwarePagesWaiter = objRedinessWaiter(_softwarePages)
-   const authorsPagesWaiter = objRedinessWaiter(_authorsPages, 
+   const authorsPagesWaiter = objRedinessWaiter(_authorsPages,
    { 
-      targetObjLength: authorsInBase, 
+      // targetObjLength: authorsInBase, 
       errorMsg: `Failed to prepare authors data before compiling. It's either lack of author info in json file or missing author page.`
    })
 
-   const escapeStr = (string) => string.toLowerCase().replace(/\s/g, '-')
-
    const pathStartsWith = (path, URISegment) => path?.startsWith(app.dir.source(URISegment))
 
-   const getFilesByExt = (base, exts, files, result) => {
-      files = files || _fs.readdirSync(base) 
-      result = result || [] 
-
-      files.forEach((file) => {
-            var newBase = _path.join(base,file)
-            if (_fs.statSync(newBase).isDirectory()) {
-               result = getFilesByExt(newBase, exts, _fs.readdirSync(newBase), result)
-            } 
-            else {
-               const ext = exts.find(ext => file.slice(-(ext.length+1)) === `.${ext}`)
-               if (ext) result.push(newBase)
-            }
-         }
-      )
-      return result
-   }
-   
    const extendsPageOptions = (pageOptions, app) => {
       
       const filePath = pageOptions.filePath ?? undefined
@@ -168,21 +149,28 @@ export const scriptspilePlugin = (/* options */) => (app) => {
 
    }
 
-   const onPrepared = (app) => {
+   const onPrepared = async (app) => {
 
-      // Copy .jsx and .js scripts from docs/scripts/ to docs/public dir
-      const jsx_files_paths = getFilesByExt(`${app.dir.source()}/scripts/`, ['jsx', 'js'])
+      // Get scripts and copy them in docs/public dir so there was no empty "download" link in dev mode
 
-      jsx_files_paths.forEach((path) => {
-         _fs.copyFile(path, `${app.dir.public()}/${_path.basename(path)}`, (err) => { if (err) throw err })
+      const files_paths = await getFiles(`${SCRIPTS_DIR}`, { filesExt: ['jsx', 'js', 'md'] })
+      
+      // Filter out scripts that don't have corresponding .md page
+      const jsx_files_paths = files_paths.flatMap((path, i, arr) => {
+         return (i+1 > arr.length-1 || trimExt(path) !== trimExt(arr[i+1])) ? [] : path
       })
 
+      jsx_files_paths.forEach((path) => {
+         _fs.copyFile(path, `${resolvePath(PUBLIC_DIR)}/${_path.basename(path)}`, (err) => { if (err) throw err })
+      })
+      
    }
 
-   const onGenerated = (app) => {
+   const onGenerated = async (app) => {
 
       // Delete .jsx and .js scripts from docs/public dir on 'npm run build'
-      const jsx_files_paths = getFilesByExt(`${app.dir.public()}/`, ['jsx', 'js'])
+
+      const jsx_files_paths = await getFiles(`${PUBLIC_DIR}`, { filesExt: ['jsx', 'js'] })
 
       jsx_files_paths.forEach((path) => {
          _fs.unlink(path, (err) => { if (err) throw err })

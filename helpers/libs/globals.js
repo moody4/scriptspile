@@ -1,0 +1,9 @@
+export const DOCS_DIR = `../../docs`
+export const SCRIPTS_DIR = `${DOCS_DIR}/scripts`
+export const AUTHORS_DIR = `${DOCS_DIR}/authors`
+export const META_DIR = `${DOCS_DIR}/.vuepress/meta`
+export const PUBLIC_DIR = `${DOCS_DIR}/public`
+export const TEMP_DIR = `../.temp`
+export const TEMPLATES_DIR = `../templates`
+export const META_FILENAME = `authors.json`
+export const METAFULL_FILENAME = `authors.full.json`
