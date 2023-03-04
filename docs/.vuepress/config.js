@@ -21,6 +21,10 @@ export default defineUserConfig({
    public: 'docs/public',
    dest: 'public/',
    theme: defaultTheme({
+      docsRepo: 'https://github.com/moody4/scriptspile',
+      docsBranch: 'main',
+      docsDir: 'docs',
+      editLinkPattern: ':repo/edit/:branch/:path',
       repo: 'https://github.com/moody4/scriptspile',
       repoLabel: 'GitHub',
       colorMode: 'dark',
