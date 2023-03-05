@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2c13e2e0","path":"/authors/","title":"Authors","lang":"en-US","frontmatter":{"lang":"en-US","title":"Authors","sidebar":false,"editLink":false},"headers":[],"git":{"updatedTime":1677825488000,"contributors":[{"name":"moody4","email":"moodyallen7@gmail.com","commits":3}]},"filePathRelative":"authors/index.md"}');export{e as data};

@@ -1,0 +1,1 @@
+import{_ as a,M as s,p as o,q as c,N as n,R as e,t as r}from"./framework-204010b2.js";const _={},d=e("h1",{id:"tags",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#tags","aria-hidden":"true"},"#"),r(" Tags")],-1);function i(l,h){const t=s("TagList");return o(),c("div",null,[d,n(t)])}const m=a(_,[["render",i],["__file","tags.html.vue"]]);export{m as default};

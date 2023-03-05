@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-22a39d25","path":"/about.html","title":"💌 Hello from our team","lang":"en-US","frontmatter":{"sidebar":false,"editLink":false,"lastUpdated":false,"contributors":false},"headers":[],"git":{"updatedTime":1676131919000,"contributors":[{"name":"moody4","email":"moodyallen7@gmail.com","commits":1}]},"filePathRelative":"about.md"}');export{a as data};
